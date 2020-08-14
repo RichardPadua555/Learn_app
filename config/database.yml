@@ -1,0 +1,35 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: learn_app_development
+  username: root
+  password: 'Rootpasswordgiven@123'
+  port: 3306
+  host: 127.0.0.1
+  
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: learn_app_test
+  username: root
+  password: 'Rootpasswordgiven@123'
+  port: 3306
+  host: 127.0.0.1
+
+staging:
+  adapter: mysql2
+  encoding: utf8
+  database: learn_app_staging
+  username: root
+  password: 'Rootpasswordgiven@123'
+  port: 3306
+  host: 127.0.0.1
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: learn_app_production
+  username: root
+  password: 'Rootpasswordgiven@123'
+  port: 3306
+  host: 127.0.0.1

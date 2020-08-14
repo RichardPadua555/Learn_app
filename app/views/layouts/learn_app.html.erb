@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Learn App</title>
+
+    <%= render 'layouts/learn_app/links' %>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+  <!-- --------------navbar sidebar-------------- -->
+     
+     <%= render 'layouts/learn_app/navbar' %>
+   
+  <!-- ------------- navbar sidebar end------------------------ -->
+  <main>
+    <%= yield %>
+  </main>
+
+   <div id="GENERIC_MODAL_DIV">
+     
+   </div>
+   
+  </body>
+  
+</html>

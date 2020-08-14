@@ -1,0 +1,67 @@
+<%
+  if @course.new_record?
+    form_method = :post
+    form_url = courses_path
+    # @client_user.status = LookUp::Base::INACTIVE
+  else
+    form_method = :put
+    form_url = course_path(@course)
+  end
+%>
+
+<div class="card-header popup_header bg-info">
+<!-- -------------------------------------- Errors any -->
+	<% if @course.errors.any? %>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		  <h4 class="alert-heading">The following errors prevented the <%= @course.class.name.downcase %> from being saved</h4>
+		  <ul>
+				<% @course.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+		        <% end %> 
+		     </ul>   
+		     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>      
+	<% end %>
+<!-- ---------------------------------------- -->
+  <h4 class="m-b-0 text-white"><b><%= (@course.new_record? ? 'Add Course' : 'Update Course') %></b></h4>
+</div>
+
+<%= form_with(url: form_url, 
+              id: "form_courses", 
+              class: "form-floating", 
+              model: @course,
+              method: form_method) do |f| %>
+
+  <%= hidden_field_tag :t, params[:t] %>
+
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-4">
+        <label>Code</label>
+        <%= f.text_field :code, class: "form-control", placeholder: 'Enter Course Code' %>
+      </div>
+      <div class="col-md-4">
+        <label>Name</label>
+        <%= f.text_field :name, class: "form-control", placeholder: 'Enter your Name' %>
+      </div>
+      <div class="col-md-4">
+        <label>Description</label>
+        <%= f.text_area :description, class: "form-control", placeholder: 'Description' %>
+      </div>      
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-4">
+        <label>Semesters</label>
+        <%= f.text_field :number_sem, class: "form-control", placeholder: 'Number of Semesters' %>
+      </div>
+    </div>    
+
+  </div>
+  <div class="modal-footer bg-info">
+    <button type="button" class="btn btn-warning waves-effect text-left" data-dismiss="modal" aria-label="Close">Cancel
+    </button>
+	<button type="submit" class="btn btn-success waves-effect text-left" >Save</button>
+  </div>
+<% end %>

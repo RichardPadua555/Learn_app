@@ -1,0 +1,32 @@
+<div class="container float-center">
+	<div class="card text-center mt-4 ml-4">
+	  <div class="card-header bg-info">
+	   <h2 class="text-white"> <%= @course.code %> : <%= @course.name %></h2>
+	  </div>
+	  <div class="card-body">
+	    <h5 class="card-title font-weight-bold">Course Name : <%= @course.name %></h5>
+	    <h5 >Number of Semesters : <%= @course.number_sem %></h5>
+	    <h5 class="card-text"> <%= @course.description %></h5>
+	    <%= link_to 'Delete' , course_path(@course) , method: :delete , data: { confirm: 'Are you sure about this' } , 
+	    class: 'btn btn-outline-danger mt-4' %>
+	    <%= link_to 'Edit' , edit_course_path(@course) , remote: true , class: 'btn btn-outline-warning mt-4' %>
+	    <%= link_to 'Back' , courses_path , class: 'btn btn-outline-secondary mt-4' %>
+	    <hr>
+	    <h4 class="font-weight-bold">Students Enrolled:</h4>
+		<% if @course.students.empty? %>
+		 <div class="alert alert-info alert-dismissible">
+	    	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	    	<strong><h5>No Students Enrolled yet</h5></strong>
+  		</div>
+		<% else %>
+		<% @course.students.each do |student| %>
+		<h6><%=student.first_name%> <%=student.last_name%></h6>
+		<% end %>
+	    <% end %>	    
+	  </div>
+	  <div class="card-footer text-muted bg-info">
+	   <p class="text-white"> Updated   <%= time_ago_in_words(@course.updated_at) %> ago <br>
+	    					  Created  <%= time_ago_in_words(@course.created_at) %> ago </p>
+	  </div>
+	</div>
+</div>

@@ -1,0 +1,42 @@
+<div class="table-responsive">
+  <table  class="table-id display course-table table table-striped table-sm">
+    <thead>
+      <tr align="center">
+        <th>Code</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Semesters</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @courses.each do |course| %>
+      <tr class="display-6" align="center">
+        <td><h6><%= course.code %></h6></td>
+        <td class='text-info'><h6 class="font-weight-bold"><%= link_to course.name , course_path(course) %></h6></td>
+        <td><h6><%= truncate(course.description , length: 30) %></h6></td>
+        <td><h6><%= course.number_sem %></h6></td>
+        <td><button  class="btn btn-success pt-1 pb-1"><%= course.status %></button></td>
+        <td>
+          <%= link_to course_path(course) , class: 'btn btn-sm btn-success' do %>
+          <i class="fa fa-eye"></i>
+          <% end %>
+          <%= link_to edit_course_path(course) , remote: true , class: 'btn btn-sm btn-warning' do %>
+          <i class="fa fa-pencil-alt"></i>
+          <% end %>
+          <%= link_to course_path(course) , method: :delete , data: { confirm: 'Are you sure you want to delete this Course'}, class: 'btn btn-sm btn-danger' do %>
+          <i class="fa fa-trash-alt"></i>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- -------DATATABLE JS LINK ------------ -->
+
+<script type="text/javascript" charset="utf8" 
+src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js">
+  </script>
